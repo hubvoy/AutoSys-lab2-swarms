@@ -75,20 +75,11 @@ fig = df.plot(
     x='goal_pct_awareness', 
     y='avg_pct_reached',
     title='Goal Percentage Awareness VS Percentage of Boids Reaching the Target',)
-'''
-fig.add_annotation(dict(
-    font=dict(color='rgba(0, 0, 200, 0.8)', size=12),
-    x=df[df['avg_pct_reached']>=90.0].idxmax(),
-    y=df[df['avg_pct_reached']>=90.0].idxmax()['avg_pct_reached'],
-    show_arrow=True,
-    text='Threshold of 90pct Reached',
-    )
-    )
-'''
+
 x = np.array([31])
 y = df['avg_pct_reached'][x].values
 fig.add_trace(go.Scatter(x=x, y=df['avg_pct_reached'][x], mode='markers+text', text=[f'Goal Awareness Pct: 31.0, Average Pct Reached: {y}'],
-                            textposition='top right'))#, #y=df['avg_pct_reached'][x])
+                            textposition='top right'))
 fig.show()
 
 if not os.path.exists('plots'):
