@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 import os
 
 EXPERIMENT_DONE    = True
-EPOCHS             = 100
+EPOCHS             = 101
 BOIDS              = 200
 COHESION           = 2.0
 ALIGNMENT          = 1.0
