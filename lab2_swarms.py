@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd 
 import pickle
 import plotly
+import plotly.graph_objects as go
 import os
 
 EXPERIMENT_DONE    = True
@@ -31,7 +32,7 @@ if not EXPERIMENT_DONE:
 
         print(f'GOAL AWARENESS: {goal_awareness}')
 
-        for run in range(5):
+        for _ in range(5):
             pct_reached = float(input("pct reached the target: "))
             if pct_reached >= 90.0:
                 success_pct.append(1.0)
@@ -73,9 +74,21 @@ with open('experiment_results.pickle', 'rb') as handle:
 fig = df.plot(
     x='goal_pct_awareness', 
     y='avg_pct_reached',
-    title='Goal Percentage Awareness VS Percentage of Boids Reaching the Target')
-
-#print(exp_results, num_experiments)
+    title='Goal Percentage Awareness VS Percentage of Boids Reaching the Target',)
+'''
+fig.add_annotation(dict(
+    font=dict(color='rgba(0, 0, 200, 0.8)', size=12),
+    x=df[df['avg_pct_reached']>=90.0].idxmax(),
+    y=df[df['avg_pct_reached']>=90.0].idxmax()['avg_pct_reached'],
+    show_arrow=True,
+    text='Threshold of 90pct Reached',
+    )
+    )
+'''
+x = np.array([31])
+y = df['avg_pct_reached'][x].values
+fig.add_trace(go.Scatter(x=x, y=df['avg_pct_reached'][x], mode='markers+text', text=[f'Goal Awareness Pct: 31.0, Average Pct Reached: {y}'],
+                            textposition='top right'))#, #y=df['avg_pct_reached'][x])
 fig.show()
 
 if not os.path.exists('plots'):
