@@ -74,7 +74,7 @@ with open('experiment_results.pickle', 'rb') as handle:
 fig = df.plot(
     x='goal_pct_awareness', 
     y='avg_pct_reached',
-    title='Goal Percentage Awareness VS Percentage of Boids Reaching the Target',)
+    title='Percentage of Boids Reaching the Target vs Goal Percentage Awareness')
 
 x = np.array([31])
 y = df['avg_pct_reached'][x].values
