@@ -80,6 +80,9 @@ x = np.array([31])
 y = df['avg_pct_reached'][x].values
 fig.add_trace(go.Scatter(x=x, y=df['avg_pct_reached'][x], mode='markers+text', text=[f'Goal Awareness Pct: 31.0, Average Pct Reached: {y}'],
                             textposition='top right'))
+
+fig.update_layout(xaxis=dict(tickmode='array', tickvals=tuple(range(0, 110, 10))))
+
 fig.show()
 
 if not os.path.exists('plots'):
